@@ -1,0 +1,28 @@
+<!-- email_wine_card: reads `wine` (one Catalog item). Two columns on desktop, stacked on mobile.
+     The bottle sits on a fixed light tile in both modes: transparent bottle PNGs disappear on dark backgrounds. -->
+<tr>
+  <td class="bg" style="padding:[[space.xs]]px [[width.gutter]]px; background-color:[[color.bg]];" bgcolor="[[color.bg]]">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="surface" style="background-color:[[color.surface]]; border-radius:[[radius.card]]px;" bgcolor="[[color.surface]]">
+      <tr>
+        <td class="stack" width="148" valign="top" style="width:148px; padding:[[space.md]]px 0 [[space.md]]px [[space.md]]px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="132"><tr>
+            <td align="center" bgcolor="[[color.bottleTile]]" style="background-color:[[color.bottleTile]]; border-radius:[[radius.card]]px; padding:[[space.sm]]px 0;">
+              <a href="{{ wine.url }}"><img src="{{ wine.image_url }}" width="64" height="160" alt="Bottle of {{ wine.name | escape }}" style="display:block; border:0; width:64px; height:160px;"></a>
+            </td>
+          </tr></table>
+        </td>
+        <td class="stack" valign="top" style="padding:[[space.md]]px [[space.md]]px [[space.md]]px [[space.md]]px;">
+          <p class="sub" style="margin:0 0 4px 0; font-family:[[font.stack]]; font-size:[[font.small]]; line-height:[[font.smallLine]]; color:[[color.sub]];">{{ wine.winery | escape }}</p>
+          <h2 class="ink" style="margin:0 0 4px 0; font-family:[[font.stack]]; font-size:[[font.h2]]; line-height:[[font.h2Line]]; font-weight:700; color:[[color.ink]];"><a href="{{ wine.url }}" class="ink" style="color:[[color.ink]]; text-decoration:none;">{{ wine.name | escape }} {{ wine.vintage }}</a></h2>
+          <p class="sub" style="margin:0 0 [[space.sm]]px 0; font-family:[[font.stack]]; font-size:[[font.small]]; line-height:[[font.smallLine]]; color:[[color.sub]];">{{ wine.region | escape }}, {{ wine.country | escape }}</p>
+          {% assign rating = wine.rating | plus: 0 %}{% if rating > 0 %}
+          <p style="margin:0 0 [[space.sm]]px 0; font-family:[[font.stack]]; font-size:[[font.body]]; line-height:[[font.bodyLine]];"><span class="rating" style="color:[[color.rating]]; font-weight:700;">&#9733; {{ wine.rating }}</span> <span class="sub" style="color:[[color.sub]]; font-size:[[font.small]];">({{ wine.rating_count }} ratings)</span></p>
+          {% endif %}
+          <p class="ink" style="margin:0; font-family:[[font.stack]]; font-size:[[font.body]]; line-height:[[font.bodyLine]]; color:[[color.ink]];">
+            {% if wine.old_price and wine.old_price != wine.price %}<span class="sub" style="color:[[color.sub]]; text-decoration:line-through;">{{ wine.old_price }}&nbsp;{{ wine.currency }}</span>&nbsp; {% endif %}<strong>{{ wine.price }}&nbsp;{{ wine.currency }}</strong>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>

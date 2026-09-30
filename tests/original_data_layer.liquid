@@ -1,0 +1,6 @@
+{% assign wine_id = event_properties.${wine_id} %}
+{% catalog_items wines {{wine_id}} %}
+{% assign wine = items[0] %}
+{% if wine == blank %}{% abort_message('wine not found in catalog') %}{% endif %}
+{% catalog_selection_items wines similar_under_budget %}
+{% assign similar = items %}

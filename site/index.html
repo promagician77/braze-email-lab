@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex, nofollow">
+<title>Email block refresh - working sample</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%238A1538'/><rect x='14' y='20' width='36' height='24' rx='3' fill='none' stroke='white' stroke-width='4'/><path d='M14 22l18 13 18-13' fill='none' stroke='white' stroke-width='4'/></svg>">
+<style>
+:root{--ink:#1C1B1A;--sub:#6B6763;--line:#E7E2DC;--soft:#F7F5F2;--wine:#8A1538;--ok:#1F7A4D;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  box-sizing:border-box;color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{background:#fff}
+body{margin:0;background:#fff;color:var(--ink);font:15.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
+a{color:var(--wine)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+header{padding:30px 0 18px;border-bottom:1px solid var(--line)}
+header h1{margin:0;font-size:24px;font-weight:700;letter-spacing:-.01em}
+header p{margin:6px 0 0;color:var(--sub);max-width:78ch}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:26px;padding:22px 0 10px;align-items:start}
+.controls{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;flex-wrap:wrap}
+.seg button{border:0;background:#fff;padding:6px 11px;font-size:13.5px;color:var(--sub);border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.lbl{font-size:12.5px;color:var(--sub);margin-right:6px}
+.stage{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;justify-content:center;overflow-x:auto}
+iframe{border:0;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.06);border-radius:6px;transition:width .25s;height:1180px;max-width:none}
+.mnote{font-size:13px;color:var(--sub);margin:8px 2px 0}
+aside h2,.sec h2{font-size:17px;margin:0 0 8px;font-weight:700}
+.blocks{list-style:none;margin:0 0 20px;padding:0;border-top:1px solid var(--line)}
+.blocks li{border-bottom:1px solid var(--line)}
+.blocks button{display:block;width:100%;text-align:left;background:none;border:0;padding:10px 2px}
+.blocks b{font-family:var(--mono);font-size:13px;font-weight:600}
+.blocks span{display:block;font-size:13.5px;color:var(--sub)}
+.blocks button[aria-expanded="true"] b{color:var(--wine)}
+pre{margin:0 0 10px;background:#161412;color:#EDE6DF;border-radius:8px;padding:12px;font:11.5px/1.5 var(--mono);max-height:360px;overflow:auto;white-space:pre-wrap;word-break:break-word}
+.checks{list-style:none;margin:0;padding:0;font-size:14px}
+.checks li{display:flex;gap:8px;padding:5px 0}
+.checks li::before{content:"\2713";color:var(--ok);font-weight:700}
+.sec{padding:30px 0;border-top:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.sw{display:flex;gap:10px;align-items:center;font-size:13px;margin-bottom:8px}
+.sw i{width:34px;height:34px;border-radius:8px;border:1px solid rgba(0,0,0,.08);flex:none}
+.sw code{font-family:var(--mono);color:var(--sub);font-size:12px}
+.type p{margin:0 0 10px}
+.type small{display:block;font-family:var(--mono);color:var(--sub);font-size:11.5px}
+table.est{border-collapse:collapse;width:100%;max-width:700px;font-size:14.5px}
+.est td{padding:8px 6px;border-bottom:1px solid var(--line)}
+.est td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.est tr.total td{font-weight:700;border-bottom:0}
+.prose{max-width:72ch}
+.prose p{margin:0 0 12px}
+.prose ul{margin:0 0 12px;padding-left:20px}
+.prose li{margin-bottom:6px}
+code.i{font-family:var(--mono);font-size:13px;background:var(--soft);padding:1px 5px;border-radius:4px}
+footer{padding:20px 0 50px;color:var(--sub);font-size:13px;border-top:1px solid var(--line)}
+@media (max-width:980px){.layout{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+@media (max-width:420px){.wrap{padding:0 14px}.stage{padding:8px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Email block refresh: a working sample</h1>
+  <p>Six Braze Content Blocks and one price-drop trigger built from them, with mock Catalog data. The colors are placeholders until I have your app's design tokens. Everything below is generated from the same source files you'd receive.</p>
+</div></header>
+
+<main class="wrap">
+  <div class="layout">
+    <section aria-labelledby="pv">
+      <h2 id="pv" style="font-size:17px;margin:0 0 10px">Price-drop trigger, rendered</h2>
+      <div class="controls">
+        <div><span class="lbl">Mode</span><div class="seg" id="mode" role="group" aria-label="Mode">
+          <button data-m="light" aria-pressed="true">Light</button>
+          <button data-m="apple" aria-pressed="false">Dark: Apple Mail</button>
+          <button data-m="outlook" aria-pressed="false">Dark: Outlook.com</button>
+          <button data-m="gmail" aria-pressed="false">Dark: Gmail app (approx.)</button>
+        </div></div>
+        <div><span class="lbl">Width</span><div class="seg" id="width" role="group" aria-label="Width">
+          <button data-w="600" aria-pressed="true">Desktop</button>
+          <button data-w="375" aria-pressed="false">Mobile</button>
+        </div></div>
+      </div>
+      <div class="stage"><iframe id="frame" title="Email preview" width="600"></iframe></div>
+      <p class="mnote" id="mnote"></p>
+    </section>
+
+    <aside>
+      <h2>Content Blocks</h2>
+      <ul class="blocks" id="blocks"></ul>
+      <h2>Checks on this build</h2>
+      <ul class="checks" id="checks"></ul>
+      <p class="mnote">Run locally with <code class="i">npm test</code>. The same checks run on every build.</p>
+    </aside>
+  </div>
+
+  <section class="sec" aria-labelledby="gl">
+    <h2 id="gl">Guidelines, generated from tokens.json</h2>
+    <p class="mnote" style="margin:0 0 16px">One file drives the blocks and this page, so the guidelines can't drift from the code.</p>
+    <div class="grid">
+      <div><h3 style="font-size:14px;margin:0 0 10px">Colors, light and dark</h3><div id="colors"></div></div>
+      <div class="type"><h3 style="font-size:14px;margin:0 0 10px">Type</h3><div id="type"></div></div>
+      <div class="prose" style="font-size:14px"><h3 style="font-size:14px;margin:0 0 10px">Spacing and combining blocks</h3><div id="space"></div>
+        <ul>
+          <li>Header first and footer last, always.</li>
+          <li>One hero per email, then at most one primary CTA before the fold.</li>
+          <li>Up to three wine cards in a row before a text block breaks them up.</li>
+          <li>Secondary CTAs are text links, so the main button stays obvious.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec prose" aria-labelledby="nt">
+    <h2 id="nt">How I'd approach your refresh</h2>
+    <p><b>Your data stays exactly where it is.</b> The template is split in two: the data layer at the top (event properties, the Catalog lookup, the Selection) is copied as is, and only the presentation below it changes. One of the tests compares that data layer byte for byte against the original, so "logic unchanged" is checked, not promised.</p>
+    <p><b>Dark mode is three different problems.</b> Apple Mail and iOS follow <code class="i">prefers-color-scheme</code>. Outlook.com and the Outlook apps partly invert colors, and respond to <code class="i">[data-ogsc]</code> rules. The Gmail apps ignore both and force their own inversion. So each block gets explicit dark styles, the logo ships as two files, and bottle photos sit on a fixed light tile, since transparent bottles vanish on dark backgrounds.</p>
+    <p><b>Outlook desktop</b> renders with Word. Layout is tables only, widths are set in attributes, and the button has a VML version so it keeps its shape and color there.</p>
+    <p><b>Gmail clips emails over about 102 KB.</b> Content Blocks inside Catalog loops add up quickly, so the build measures every template. This one is well under.</p>
+    <p>The previews here are approximations. For the real work I'd test every block in Litmus or Email on Acid across Outlook desktop, Outlook.com, Gmail, Apple Mail, and iOS, and include the screenshots in the handoff.</p>
+
+    <h2 style="margin-top:26px">Estimated hours</h2>
+    <table class="est"><tbody>
+      <tr><td>Block designs matched to your app UI (header, footer, hero, text, CTA, wine card variants, supporting blocks)</td><td>18-22 h</td></tr>
+      <tr><td>Building the blocks as Braze Content Blocks, with dark mode and Outlook fallbacks</td><td>24-28 h</td></tr>
+      <tr><td>Design guidelines: colors, spacing, typography, block combinations</td><td>6-8 h</td></tr>
+      <tr><td>Trigger template rebuilt from the new blocks, data layer unchanged</td><td>8-10 h</td></tr>
+      <tr><td>Cross-client testing and fixes</td><td>10-12 h</td></tr>
+      <tr><td>Handoff notes and a walkthrough for your CRM team</td><td>3-4 h</td></tr>
+      <tr class="total"><td>Total</td><td>69-84 h</td></tr>
+    </tbody></table>
+    <p class="mnote">About 20 hours a week fits your 4-6 week window, with room for review rounds.</p>
+
+    <h2 style="margin-top:26px">What I'd ask first</h2>
+    <ul>
+      <li>Can I get the app's Figma file or design tokens? That's what the blocks should match.</li>
+      <li>Which trigger email should be rebuilt, and can I see its current Liquid?</li>
+      <li>Do you have Litmus or Email on Acid, or should I test with my own account?</li>
+      <li>Which Catalog fields feed the wine card today, and which Selections are in use?</li>
+    </ul>
+  </section>
+</main>
+<footer><div class="wrap">Sample wines, prices, and images are placeholders. Built by Josinaldo for your job post.</div></footer>
+
+<script>
+(function(){
+  var BLOCKS=[
+    ['email_header','Logo with separate light and dark files'],
+    ['email_hero','Headline and intro, text only so it survives image blocking'],
+    ['email_wine_card','Reads one Catalog item: bottle, winery, region, rating, price'],
+    ['email_cta','Bulletproof button with a VML version for Outlook'],
+    ['email_text','Body paragraph'],
+    ['email_footer','Preferences and Braze unsubscribe'],
+    ['email_styles','Shared styles: mobile stacking and dark mode rules']
+  ];
+  var NOTES={
+    light:'Light mode, as most clients show it.',
+    apple:'Apple Mail and iOS: the dark styles in email_styles apply.',
+    outlook:'Outlook.com and Outlook apps: triggered through [data-ogsc], as those clients do.',
+    gmail:'Gmail apps force their own inversion and ignore dark styles. This is a rough approximation; real screenshots come from Litmus or Email on Acid.'
+  };
+  var raw='',mode='light',frame=document.getElementById('frame');
+  function show(){
+    var h=raw;
+    if(mode==='apple')h=h.replace(/@media \(prefers-color-scheme: dark\)/,'@media all');
+    if(mode==='outlook')h=h.replace('<html ','<html data-ogsc ');
+    if(mode==='gmail')h=h.replace('</head>','<style>html{filter:invert(1) hue-rotate(180deg)}img{filter:invert(1) hue-rotate(180deg)}</style></head>');
+    frame.srcdoc=h;document.getElementById('mnote').textContent=NOTES[mode];
+  }
+  fetch('preview/price_drop.html').then(function(r){return r.text()}).then(function(t){raw=t;show()});
+  [].forEach.call(document.querySelectorAll('#mode button'),function(b){b.addEventListener('click',function(){
+    mode=b.dataset.m;[].forEach.call(document.querySelectorAll('#mode button'),function(x){x.setAttribute('aria-pressed',String(x===b))});show()})});
+  [].forEach.call(document.querySelectorAll('#width button'),function(b){b.addEventListener('click',function(){
+    frame.width=b.dataset.w;frame.style.width=b.dataset.w+'px';[].forEach.call(document.querySelectorAll('#width button'),function(x){x.setAttribute('aria-pressed',String(x===b))})})});
+  frame.style.width='600px';
+
+  var ul=document.getElementById('blocks');
+  BLOCKS.forEach(function(b){
+    var li=document.createElement('li');
+    li.innerHTML='<button aria-expanded="false"><b>'+b[0]+'</b><span>'+b[1]+'</span></button>';
+    var btn=li.firstChild,pre=null;
+    btn.addEventListener('click',function(){
+      if(pre){pre.remove();pre=null;btn.setAttribute('aria-expanded','false');return}
+      fetch('braze/content-blocks/'+b[0]+'.html').then(function(r){return r.text()}).then(function(t){
+        pre=document.createElement('pre');pre.textContent=t;li.appendChild(pre);btn.setAttribute('aria-expanded','true')});
+    });
+    ul.appendChild(li);
+  });
+
+  fetch('report.json').then(function(r){return r.json()}).then(function(rep){
+    var t=rep.templates.price_drop,total=t.problems.length;
+    Object.keys(rep.blocks).forEach(function(k){total+=rep.blocks[k].problems.length});
+    var items=[
+      'Size: '+(t.bytes/1024).toFixed(1)+' KB, well under Gmail\'s ~102 KB clip limit',
+      'No flex, grid, or absolute positioning that Outlook desktop ignores',
+      'Every image has alt text and a width attribute',
+      'Every layout table has role="presentation"',
+      'Button has a VML fallback for Outlook',
+      'Dark mode rules for Apple Mail and for Outlook.com',
+      'No unresolved design tokens'
+    ];
+    document.getElementById('checks').innerHTML=total===0?items.map(function(i){return '<li>'+i+'</li>'}).join(''):'<li style="color:#B42318">'+total+' problems found - see report.json</li>';
+  });
+
+  fetch('tokens.json').then(function(r){return r.json()}).then(function(tk){
+    var names={bg:'Background',surface:'Card surface',ink:'Text',sub:'Secondary text',line:'Lines',accent:'Accent / button',rating:'Rating'};
+    document.getElementById('colors').innerHTML=Object.keys(names).map(function(k){
+      return '<div class="sw"><i style="background:'+tk.color[k]+'"></i><i style="background:'+(tk.dark[k]||tk.color[k])+'"></i><div>'+names[k]+'<br><code>'+tk.color[k]+' / '+(tk.dark[k]||'same')+'</code></div></div>'}).join('');
+    var f=tk.font;
+    document.getElementById('type').innerHTML=
+      '<p style="font-size:'+f.h1+';line-height:'+f.h1Line+';font-weight:700">Heading 1<small>'+f.h1+' / '+f.h1Line+', bold</small></p>'+
+      '<p style="font-size:'+f.h2+';line-height:'+f.h2Line+';font-weight:700">Heading 2, wine names<small>'+f.h2+' / '+f.h2Line+', bold</small></p>'+
+      '<p style="font-size:'+f.body+';line-height:'+f.bodyLine+'">Body text for descriptions<small>'+f.body+' / '+f.bodyLine+'</small></p>'+
+      '<p style="font-size:'+f.small+';line-height:'+f.smallLine+'">Small text for winery and region<small>'+f.small+' / '+f.smallLine+'</small></p>'+
+      '<small>System font stack, so Outlook falls back cleanly.</small>';
+    document.getElementById('space').innerHTML='<p style="margin:0 0 10px">'+Object.keys(tk.space).map(function(k){return k+' '+tk.space[k]+'px'}).join(', ')+'. Side gutter '+tk.width.gutter+'px, max width '+tk.width.email+'px, card radius '+tk.radius.card+'px.</p>';
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "braze-email-lab",
+  "version": "0.1.0",
+  "description": "Refreshed Braze email blocks: Content Blocks, a Catalog-driven trigger template, dark mode and Outlook fallbacks, and an email linter.",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/email.test.mjs"
+  },
+  "dependencies": {
+    "liquidjs": "^10.29.0"
+  },
+  "private": true,
+  "type": "module"
+}

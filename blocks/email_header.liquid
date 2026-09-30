@@ -1,0 +1,11 @@
+<!-- email_header: logo row. Logo ships in two files so dark mode never shows a dark logo on a dark background. -->
+<tr>
+  <td class="bg" style="padding:[[space.lg]]px [[width.gutter]]px [[space.md]]px [[width.gutter]]px; background-color:[[color.bg]];" bgcolor="[[color.bg]]">
+    <a href="{{ header_link | default: 'https://example.com' }}" style="text-decoration:none;">
+      <img class="logo-light" src="{{ logo_light | default: 'https://placehold.co/120x32/FFFFFF/8A1538/png?text=Logo' }}" width="120" height="32" alt="{{ brand_name | default: 'Home' }}" style="display:block; border:0; width:120px; height:32px;">
+      <!--[if !mso]><!-->
+      <img class="logo-dark" src="{{ logo_dark | default: 'https://placehold.co/120x32/141312/E0567A/png?text=Logo' }}" width="120" height="32" alt="{{ brand_name | default: 'Home' }}" style="display:none; max-height:0; overflow:hidden; mso-hide:all; border:0; width:120px; height:32px;">
+      <!--<![endif]-->
+    </a>
+  </td>
+</tr>

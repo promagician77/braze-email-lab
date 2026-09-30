@@ -1,0 +1,69 @@
+{
+  "user": {
+    "first_name": "Freja",
+    "set_user_to_unsubscribed_url": "https://example.com/unsub"
+  },
+  "event_properties": {
+    "wine_id": "w-1042"
+  },
+  "preference_center_url": "https://example.com/preferences",
+  "catalogs": {
+    "wines": {
+      "w-1042": {
+        "id": "w-1042",
+        "name": "Barolo Serralunga",
+        "vintage": "2019",
+        "winery": "Cantina Esempio",
+        "region": "Piedmont",
+        "country": "Italy",
+        "rating": "4.3",
+        "rating_count": "1,284",
+        "price": "289",
+        "old_price": "349",
+        "currency": "DKK",
+        "url": "https://example.com/w/1042",
+        "image_url": "img/bottle-red.png"
+      },
+      "w-2210": {
+        "id": "w-2210",
+        "name": "Langhe Nebbiolo",
+        "vintage": "2021",
+        "winery": "Esempio Vigne",
+        "region": "Piedmont",
+        "country": "Italy",
+        "rating": "4.0",
+        "rating_count": "642",
+        "price": "179",
+        "old_price": "179",
+        "currency": "DKK",
+        "url": "https://example.com/w/2210",
+        "image_url": "img/bottle-red.png"
+      },
+      "w-3307": {
+        "id": "w-3307",
+        "name": "Rosso di Montalcino",
+        "vintage": "2022",
+        "winery": "Poggio Esempio",
+        "region": "Tuscany",
+        "country": "Italy",
+        "rating": "0",
+        "rating_count": "0",
+        "price": "159",
+        "currency": "DKK",
+        "url": "https://example.com/w/3307",
+        "image_url": "img/bottle-green.png"
+      }
+    }
+  },
+  "selections": {
+    "wines": {
+      "similar_under_budget": [
+        "w-2210",
+        "w-3307"
+      ]
+    }
+  },
+  "logo_light": "img/logo-light.png",
+  "logo_dark": "img/logo-dark.png",
+  "brand_name": "Home"
+}

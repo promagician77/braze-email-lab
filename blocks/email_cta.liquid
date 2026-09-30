@@ -1,0 +1,14 @@
+<!-- email_cta: bulletproof button. Real HTML/CSS for every client, VML roundrect for Outlook desktop (Word engine). -->
+<tr>
+  <td class="bg" align="center" style="padding:[[space.lg]]px [[width.gutter]]px; background-color:[[color.bg]];" bgcolor="[[color.bg]]">
+    <!--[if mso]>
+    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ cta_url }}" style="height:48px; v-text-anchor:middle; width:280px;" arcsize="21%" stroke="f" fillcolor="[[color.accent]]">
+      <w:anchorlock/>
+      <center style="color:[[color.onAccent]]; font-family:Arial, sans-serif; font-size:16px; font-weight:bold;">{{ cta_label }}</center>
+    </v:roundrect>
+    <![endif]-->
+    <!--[if !mso]><!-->
+    <a href="{{ cta_url }}" class="btn" style="display:inline-block; background-color:[[color.accent]]; color:[[color.onAccent]]; font-family:[[font.stack]]; font-size:16px; font-weight:700; line-height:48px; text-align:center; text-decoration:none; width:280px; max-width:100%; border-radius:[[radius.button]]px; -webkit-text-size-adjust:none;">{{ cta_label }}</a>
+    <!--<![endif]-->
+  </td>
+</tr>

@@ -1,0 +1,43 @@
+{% comment %} ===== DATA LAYER: copied as-is from the current template. Not edited in the refresh. ===== {% endcomment %}
+{% assign wine_id = event_properties.${wine_id} %}
+{% catalog_items wines {{wine_id}} %}
+{% assign wine = items[0] %}
+{% if wine == blank %}{% abort_message('wine not found in catalog') %}{% endif %}
+{% catalog_selection_items wines similar_under_budget %}
+{% assign similar = items %}
+{% comment %} ===== PRESENTATION: new blocks only below this line ===== {% endcomment %}
+{% assign hero_title = 'A wine you saved just dropped in price' %}
+{% capture hero_text %}Good timing, {{ ${first_name} | default: 'there' }}. It's cheaper now than when you saved it.{% endcapture %}
+{% assign cta_url = wine.url %}{% assign cta_label = 'See the wine' %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>{{ hero_title }}</title>
+<!--[if mso]><noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript><![endif]-->
+{{content_blocks.${email_styles}}}
+</head>
+<body class="bg" style="margin:0; padding:0; background-color:[[color.bg]];" bgcolor="[[color.bg]]">
+<div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">{{ wine.name }} is now {{ wine.price }} {{ wine.currency }}.&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="bg" bgcolor="[[color.bg]]" style="background-color:[[color.bg]];"><tr><td align="center">
+<!--[if mso]><table role="presentation" width="[[width.email]]" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:[[width.email]]px;">
+{{content_blocks.${email_header}}}
+{{content_blocks.${email_hero}}}
+{{content_blocks.${email_wine_card}}}
+{{content_blocks.${email_cta}}}
+{% if similar.size > 0 %}
+{% assign body_text = 'Similar wines under your usual budget:' %}
+{{content_blocks.${email_text}}}
+{% for wine in similar limit: 2 %}{{content_blocks.${email_wine_card}}}{% endfor %}
+{% endif %}
+{{content_blocks.${email_footer}}}
+</table>
+<!--[if mso]></td></tr></table><![endif]-->
+</td></tr></table>
+</body>
+</html>

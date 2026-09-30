@@ -1,0 +1,11 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "headers": [
+    { "source": "/(.*)", "headers": [
+      { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" }
+    ]},
+    { "source": "/braze/(.*)", "headers": [ { "key": "Content-Type", "value": "text/plain; charset=utf-8" } ] }
+  ]
+}

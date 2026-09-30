@@ -1,0 +1,31 @@
+<!-- email_styles: shared <style>. Dark mode for Apple Mail / iOS (prefers-color-scheme) and Outlook.com / Outlook apps ([data-ogsc]).
+     Gmail apps ignore both and apply their own inversion, so colors are chosen to survive that too. -->
+<style>
+  :root { color-scheme: light dark; supported-color-schemes: light dark; }
+  body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+  table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
+  img { -ms-interpolation-mode:bicubic; }
+  a[x-apple-data-detectors] { color:inherit !important; text-decoration:none !important; }
+  @media screen and (max-width:480px) {
+    .stack { display:block !important; width:100% !important; box-sizing:border-box; padding-right:[[space.md]]px !important; }
+  }
+  @media (prefers-color-scheme: dark) {
+    .bg { background-color:[[dark.bg]] !important; }
+    .surface { background-color:[[dark.surface]] !important; }
+    .ink { color:[[dark.ink]] !important; }
+    .sub { color:[[dark.sub]] !important; }
+    .rating { color:[[dark.rating]] !important; }
+    .line-top { border-top-color:[[dark.line]] !important; }
+    .btn { background-color:[[dark.accent]] !important; color:[[dark.onAccent]] !important; }
+    .logo-light { display:none !important; }
+    .logo-dark { display:block !important; max-height:none !important; }
+  }
+  [data-ogsc] .bg { background-color:[[dark.bg]] !important; }
+  [data-ogsc] .surface { background-color:[[dark.surface]] !important; }
+  [data-ogsc] .ink { color:[[dark.ink]] !important; }
+  [data-ogsc] .sub { color:[[dark.sub]] !important; }
+  [data-ogsc] .rating { color:[[dark.rating]] !important; }
+  [data-ogsc] .line-top { border-top-color:[[dark.line]] !important; }
+  [data-ogsc] .logo-light { display:none !important; }
+  [data-ogsc] .logo-dark { display:block !important; max-height:none !important; }
+</style>
